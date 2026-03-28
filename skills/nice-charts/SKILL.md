@@ -2,9 +2,9 @@
 name: nice-charts
 description: >-
   Prevents common data visualization mistakes and guides toward the right chart
-  for the right problem. Covers chart type selection, color scales, axes,
-  typography, layout, and accessibility — based on Datawrapper's editorial
-  guidelines.
+  for the right problem. Covers chart type selection (using the FT Visual
+  Vocabulary's 8-category decision framework), color scales, axes, typography,
+  layout, and accessibility.
 
   Use this skill whenever a chart, graph, diagram, or visualization is being
   created, evaluated, or improved — regardless of library or tool. Apply it for:
@@ -33,36 +33,135 @@ This skill exists to prevent common chart mistakes — wrong chart type for the 
 
 ## 1. Choose the Right Chart Type
 
-Match the chart to your goal:
+**First: do you need a chart at all?**
+A chart is only justified when the visual form reveals something that plain text can't. If you're showing one number, state it in text: "Revenue grew 34% YoY." If you're showing two numbers, compare them in a sentence. Charts earn their place when there are 3+ values, a pattern, or a relationship to expose.
 
-| Goal | Best options | Avoid |
-|------|-------------|-------|
-| **Change over time** | Line chart, column chart (few time points), slope chart (first/last only), area chart (when totals matter) | Pie chart |
-| **Proportions/shares** | Stacked bar, grouped bar, bar chart | Pie/donut (hard to compare) |
-| **Comparing quantities** | Bar chart (horizontal scales better on mobile), dot plot | 3D anything |
-| **Comparison vs. a target** | Bullet graph | Gauge/speedometer (wastes space) |
-| **Correlation** | Scatter plot, bubble chart | Line chart |
-| **Distribution (one group)** | Histogram, density plot | Pie chart |
-| **Distribution (multiple groups)** | Box plot, violin plot, small multiples | Single histogram |
-| **Multivariate comparison** | Heatmap, parallel coordinates | Radar/spider chart |
-| **Range / min-max** | Span chart, box plot | Bar chart (hides spread) |
-| **Geographic patterns** | Choropleth map (relative data), bubble map (proportional values), dot map (density/clustering) | Choropleth for absolute counts |
-| **Flow / Sankey** | Sankey/alluvial diagram, chord diagram | Pie chart |
-| **Relationship / network** | Network diagram | — |
-| **Survey / Likert data** | Stacked bar | Pie chart |
-| **Hierarchical data** | Treemap, Marimekko, sunburst | Stacked pie |
-| **Age/gender breakdowns** | Population pyramid | — |
-| **Project planning / schedules** | Gantt chart | — |
-| **Event sequence (qualitative)** | Timeline | Line chart |
-| **Set overlap / membership** | Venn diagram (≤3 sets) | — |
-| **Text / tag frequency** | Bar chart of frequencies | Word cloud (for analysis) |
+Start by identifying the **data relationship** you want to show — this is the most important decision. Pick the category that fits, then choose the chart type within it.
 
-**Rules:**
-- Prefer familiar chart types (bar, line, scatter) — unusual types require reader learning curves. Introduce complexity gradually.
-- Bar charts > column charts on mobile (grow vertically, not horizontally).
-- Pie/donut charts only work when: (a) values sum to 100%, (b) there are ≤ 5 slices, and (c) differences are obvious. Two-value data? State the percentage in text instead.
-- Small multiples (separate panels per category) beat spaghetti line charts when 4+ lines overlap.
-- When data is simple, let it be simple — don't add complexity where it doesn't exist.
+> Quick pick: **Deviation** (from baseline) · **Correlation** (between variables) · **Change over time** · **Ranking** (ordered comparison) · **Distribution** (spread) · **Part-to-whole** (proportions) · **Magnitude** (size) · **Spatial** (geography) · **Flow** (process/network)
+
+### Deviation
+*How values diverge from a reference point — zero, a baseline, an average, or a target.*
+
+| Chart | When to use |
+|-------|-------------|
+| Diverging bar | Side-by-side bars extending left/right from center. Best for survey sentiment, profit/loss, M/F splits. |
+| Spine chart | One value splits into two contrasting halves. |
+| Surplus/deficit fill | Shaded area above/below a baseline (e.g., trade balance). |
+
+### Correlation
+*The relationship between two or more continuous variables.*
+
+| Chart | When to use |
+|-------|-------------|
+| Scatter plot | Standard for two variables. Add trend line for direction/strength. |
+| Bubble chart | Scatter + third variable as circle size. |
+| Connected scatter plot | Scatter where points are linked in time order; shows how a relationship evolves. |
+| XY heatmap | Patterns between two categorical dimensions (e.g., activity by day × hour). |
+| Line + column combo | One axis for amount (bars), one for rate (line) on the same time series. |
+
+Always acknowledge: correlation ≠ causation.
+
+### Change Over Time
+*How values change across a time series.*
+
+| Chart | When to use |
+|-------|-------------|
+| Line chart | Continuous data with many time points. |
+| Column chart | Discrete time points or a single series. |
+| Slope chart | Change between just 2–3 points — cleaner than a full line when middle points don't matter. |
+| Area chart | When both totals and breakdown matter simultaneously. |
+| Fan chart | Uncertainty in future projections — the cone widens forward. |
+| Calendar heatmap | Temporal patterns by day/week/month (not for reading precise values). |
+| Priestley timeline | When date and duration are both central to the story. |
+
+Avoid: line chart for categorical data; area chart when only trends matter (use line instead).
+
+### Ranking
+*How things compare in ordered position.*
+
+| Chart | When to use |
+|-------|-------------|
+| Bar chart (sorted) | Standard. Sort descending; horizontal for long labels or mobile. |
+| Lollipop chart | Same as bar but draws the eye to the value endpoint. Works well for sparse data. |
+| Slope chart | How ranks changed between two time periods. |
+| Bump chart | Rank order changes across many time points. |
+
+Avoid: unsorted bars when rank is the point; column charts for long category lists (hard to read vertically).
+
+### Distribution
+*How values are spread across a range.*
+
+| Chart | When to use |
+|-------|-------------|
+| Histogram | Standard. Narrow gaps between columns emphasize shape. |
+| Box plot | Compact: median, quartiles, outliers. Good for side-by-side group comparison. |
+| Violin plot | Full distribution shape including bimodality. Needs ≥30 data points. |
+| Population pyramid | Age/gender breakdowns — back-to-back histograms. |
+| Dot strip plot | Individual points on a strip. Good for small datasets where every point matters. |
+| Cumulative curve | Shows inequality or skew (e.g., Lorenz curve for income). |
+
+Avoid: single bar showing only the mean — it hides spread entirely.
+
+### Part-to-Whole
+*How components add up to a total.*
+
+| Chart | When to use |
+|-------|-------------|
+| Stacked bar/column | Totals + one component comparison. Use % stacking when proportions matter more than absolutes. |
+| Pie / donut | ≤5 slices with obvious size differences, values sum to 100%. Donut hole can hold a key figure. |
+| Treemap | Hierarchical proportions. Struggles with many small segments. |
+| Waterfall | Sequential additions/subtractions that build to a total (budgets, bridges). |
+| Waffle / grid chart | Whole-number percentages. Works well in small multiples. |
+
+Avoid: pie with 6+ slices; sunburst for anything needing precise comparison.
+
+### Magnitude
+*The size of things — straightforward quantity comparison.*
+
+| Chart | When to use |
+|-------|-------------|
+| Bar chart | Standard. Must start at zero. Horizontal for long labels or mobile. |
+| Column chart | Time series or vertical context. |
+| Grouped bar/column | ≤2–3 series. More: small multiples. |
+| Lollipop chart | When emphasizing the data point over the bar area. |
+| Bullet graph | Actual vs. target, with performance bands. Space-efficient KPI chart. |
+| Proportional symbol | Large variation between values where bar lengths would look distorted. Scale by area, not radius. |
+| Pictogram / isotype | Whole units only. Never slice an icon for a decimal. |
+
+Avoid: starting bar charts above zero; 3D effects; gauge/speedometer (wasteful).
+
+### Spatial
+*Patterns across geography.*
+
+| Chart | When to use |
+|-------|-------------|
+| Choropleth | Rates, percentages, per-capita values. Never absolute counts. |
+| Proportional symbol map | Absolute totals (population, GDP). Scale circles by area. |
+| Dot density map | Clustering and spatial concentration of individual events. |
+| Cartogram (equalised) | Each unit same size — good for election results where each vote is equal. |
+| Cartogram (scaled) | Units stretched by a value — shows distortion between geography and data. |
+| Flow map | Movement or migration between locations. |
+
+Use a map only when geography *is* the insight. If a sorted bar chart tells the story more clearly, use the bar chart.
+
+### Flow
+*Movement through a process, budget, or network.*
+
+| Chart | When to use |
+|-------|-------------|
+| Sankey / alluvial | How volumes flow through multiple stages or conditions. |
+| Waterfall | Sequential budget flows with +/− components. |
+| Chord diagram | Bidirectional flows between pairs (≤8–10 entities). |
+| Network diagram | Relationship complexity; falls apart with dense connections — filter aggressively. |
+
+---
+
+**Cross-cutting rules:**
+- Prefer familiar types (bar, line, scatter) — unusual types carry a learning cost. Introduce complexity only when simpler types genuinely can't tell the story.
+- Bar charts > column charts on mobile (grow vertically, labels stay readable).
+- Small multiples (one panel per category) beat spaghetti line charts when 4+ lines overlap.
+- When data is simple, let it be simple.
 
 ---
 
@@ -129,19 +228,7 @@ Match the chart to your goal:
 - Color key must show at minimum: lowest value, highest value, and midpoint color.
 - **Use a map only when geography is the insight.** If the pattern could be shown more clearly with a bar chart sorted by value, use the bar chart.
 
-**Maps as guides** — when the map's purpose is to help readers navigate or orient:
-- Include a major recognizable landmark beyond the focal area (a river, coastline, famous building) so readers know where they are in the world.
-- Add a scale bar so readers can judge distances and plan logistics.
-- Add directional arrows or labels pointing toward nearby major landmarks, even if they're off-map.
-- Add operational specifics: entry/exit points, transport stops, opening times — anything the audience needs to act on the map.
-- Imagine your specific audience's knowledge gaps. A local map for tourists needs far more hand-holding than one for specialists.
-
-**Map annotations** — when adding text callouts to a map:
-- Add ~5% padding around the map border so annotations don't crowd the edges.
-- Remove generic background labels (city names, region names) that compete with your annotations. If your annotations already name enough places to orient the reader, the background labels are noise.
-- Use **circles** to indicate regional patterns (a loose area); use **arrows** only when pointing to a specific data point or location.
-- Match annotation marker colors to the map's data palette so they integrate visually instead of demanding attention. Annotations should sit on the map, not jump off it.
-- Let readers explore annotations in any order — don't number them or force a reading sequence unless the order genuinely matters.
+> For orientation/navigation maps and annotation callouts, see `references/maps.md`.
 
 ### Tables
 
@@ -167,57 +254,42 @@ Design rules:
 - Pagination signals to readers that more rows exist — use it for long lists.
 - Tables tell a story too: state your message in the title, don't just label the data.
 
-### Scatter Plot
+> For Scatter Plot, Box & Whisker Plot, Heatmap, Bullet Graph, Radar/Spider Chart, and Gantt Chart design rules, see `references/chart-types.md`.
 
-- Use for paired numerical data to reveal correlation, clustering, or outliers between two continuous variables.
-- Add a trend line to make the direction and strength of correlation explicit.
-- **Critical caveat: correlation ≠ causation.** Always acknowledge that an unseen variable may explain the pattern.
-- Use a bubble chart when a third numerical variable should be encoded as circle size.
-- For overlapping points in dense data, use transparency, jitter, or a 2D density/hexbin plot instead.
+### Diverging Bar Chart
 
-### Box & Whisker Plot
+- Use when the story is about **deviation from a midpoint** — positive vs. negative, agree vs. disagree, before vs. after.
+- The center axis is the reference point (zero, neutral, average). Bars extend left *and* right.
+- Common uses: survey sentiment (Likert scales), profit/loss by category, gender or demographic splits.
+- Align category labels at the center axis so both directions are easy to compare.
+- Use two hues (not shades) for the two directions — pick ones that don't suggest good/bad unless that's the point. Avoid red/green for anything not explicitly valenced.
+- If the split is uneven (most values lean one way), consider adding a reference line for the average or median.
+- Don't use a diverging bar when the data is all positive or all negative — a standard bar is clearer.
 
-- Shows median, quartiles, and outliers at a glance — compact enough to compare many groups side by side.
-- Use to compare distributions across groups (e.g., salary by department, test scores by school).
-- Better than a bar chart for showing spread; more compact than a histogram for group comparisons.
-- Outliers plotted as individual dots reveal anomalies immediately.
-- Limitation: doesn't show the *shape* of the distribution. If bimodality or skew matters, use a violin plot.
+### Lollipop Chart
 
-### Heatmap
+- A circle (the data point) on a thin stem — functionally identical to a bar chart, but draws the eye to the endpoint value rather than the bar area.
+- Use when: data is sparse and you want to avoid heavy visual weight; ranking is the message; or you're showing changes between two periods on the same axis (connected dot plot / dumbbell chart).
+- Dumbbell / connected dot variant: two dots per category connected by a line, showing change from period A to period B. Excellent for before/after comparisons.
+- Always start the axis at zero for standalone lollipops — the same rule as bar charts. Exception: dumbbells, where both endpoints are visible and the gap is the message.
+- Keep stems thin and low-contrast; let the dot carry the visual weight.
 
-- A matrix (rows × columns) where each cell's color encodes a third variable.
-- Use for: temperature by city × month, activity by day × hour, correlation matrices.
-- Good for spotting patterns and overall trends; poor for reading precise values — color perception is imprecise.
-- Show data values directly in cells whenever exact numbers also matter.
-- A legend is essential. Limit to a single sequential or diverging scale per heatmap.
-- Sort rows and columns intentionally — clustering similar values reveals patterns that default alphabetical order hides.
+### Waterfall Chart
 
-### Bullet Graph
+- Shows how an initial value increases and decreases through a sequence of steps to reach a final value — like a running total with +/− contributions visible.
+- Classic use: budget or P&L breakdown ("revenue → minus COGS → minus OpEx → = profit"), year-over-year change decomposition.
+- Color convention: green for positive contributions, red for negative, gray or blue for the start/end totals.
+- Include connecting lines between bars to make the flow legible.
+- Label each bar with its value (absolute or %) — the chart's value comes from seeing the exact contributions, not just the shape.
+- Don't use when the sequence of additions/subtractions doesn't matter — a grouped bar is simpler.
 
-- A compact bar with a target line and background performance bands — the space-efficient alternative to gauge/speedometer charts.
-- Use for KPI dashboards where you need actual vs. target in minimal space.
-- Keep background performance bands to a maximum of 5 shades; more becomes unreadable.
-- Audiences unfamiliar with the format may need a one-line explanation in the chart description.
-
-### Radar / Spider Chart
-
-- Frequently misused — direct comparison between non-adjacent axes is nearly impossible on a radial layout.
-- **Better alternatives:** small multiples of bar charts or parallel coordinates for multivariate comparison.
-- Only use when: (a) you have 5–10 variables of the same unit, (b) the overall *profile shape* is the message, (c) comparing at most 2–3 groups.
-- Never fill polygons when showing multiple series — the top polygon covers those beneath it. Use transparent outlines.
-
-### Gantt Chart
-
-- Tasks as horizontal bars on a time axis; shows duration, sequence, dependencies, and parallel workstreams.
-- The standard for project planning, roadmap communication, and editorial production schedules.
-- Add dependency arrows to show which tasks block others. Add a vertical "today" line for current status.
-- Filter to milestone-level for executive audiences — too many tasks creates an unreadable wall.
-
-> **Less common chart types** (violin plot, stream graph, network diagram, chord diagram, bubble map, dot map, span chart, Venn diagram, word cloud, parallel coordinates, timeline): read `references/chart-types.md` when one of these comes up.
+> **More chart types** — for Scatter Plot, Box & Whisker, Heatmap, Bullet Graph, Radar/Spider, Gantt, plus niche types (violin plot, stream graph, network diagram, chord diagram, bubble map, dot map, span chart, Venn diagram, word cloud, parallel coordinates, timeline, bump chart, calendar heatmap, fan chart, connected scatter, dot strip plot, cumulative curve, cartogram): see `references/chart-types.md`.
 
 ---
 
-## 3. The Y-Axis
+## 3. Axes & Aspect Ratio
+
+### The Y-Axis
 
 - **Bar charts must start at zero.** The area of a bar encodes magnitude — truncating the axis lies.
 - **Line charts don't have to start at zero.** Show the range that's meaningful for the data.
@@ -228,6 +300,29 @@ Design rules:
 - Signal explicitly when panels in small multiples have different y-axis scales — readers assume they're the same.
 - **Use a logarithmic scale** when data spans multiple orders of magnitude (e.g., population by country, revenue from $1k to $1B). A linear axis compresses smaller values into invisibility.
 - **If you must truncate an axis**, mark the break with a visible jagged line (≈) so readers know the scale is interrupted — never truncate silently.
+
+### Aspect Ratio
+
+The shape of a chart is a design choice — it changes what the data looks like.
+
+- **Wide and short** (landscape) makes slopes shallower, changes look gradual. Good for: showing stability, long time series without alarm, comparisons across many categories.
+- **Tall and narrow** (portrait) makes slopes steeper, changes look dramatic. Good for: emphasizing volatility, calling attention to a sharp rise or fall.
+- **The banking-to-45° rule:** for line charts, the default aspect ratio should make the average slope of lines close to 45°. This maximizes the ability to perceive differences in slope across the chart. Too flat: steepen it. Too steep: flatten it.
+- **Square** works well for scatter plots — it avoids artificially stretching or compressing the correlation.
+- **Consistency matters more than optimality.** In a dashboard or article with multiple charts, use the same aspect ratio for the same chart type so readers don't misread significance from shape differences alone.
+- Never let the container dictate the shape by default. Explicitly set width and height to serve the data, not the layout grid.
+
+### Chart Chrome
+
+"Chrome" = everything that isn't data: gridlines, axis lines, borders, tick marks, background fill. The rule: every chrome element must justify its presence. Default to removing, not adding.
+
+- **Gridlines:** Horizontal only for bar/line/area charts. Vertical gridlines are almost never needed — the x-axis already provides the reference. Make them light gray and thin; they should recede behind the data, not compete with it.
+- **Axis lines vs. gridlines:** Use one or the other. If you have gridlines, the axis line is usually redundant — remove it. If you have no gridlines, a subtle axis line helps anchor the data.
+- **Tick marks:** Redundant when gridlines are present — remove them. Use tick marks only if you've removed gridlines and need to mark the scale.
+- **Chart border/frame:** Remove it. The box around a chart adds no information and makes the data feel constrained.
+- **Background fill:** White or near-white for the data area. Colored backgrounds conflict with color encodings and reduce contrast. Never use a background color that resembles any of the data colors.
+- **Zero line:** If zero isn't already your axis, draw a slightly stronger horizontal line there. Don't make it heavier than the data — just heavier than the gridlines.
+- **Breathing room:** Don't let bars or lines touch the chart edges. Add ~5–10% padding above the highest value so the topmost element doesn't get clipped or crowded by the title.
 
 ---
 
@@ -295,6 +390,17 @@ Contrast requirements:
 - **Natural breaks (Jenks):** Best balance — groups similar values, separates distinct ones.
 - Always warn readers if y-axis scales or color scales differ between panels.
 
+### Dark Mode
+
+On dark backgrounds the same principles apply — but lightness is reversed.
+
+- **Sequential scales:** low values should be dark/desaturated, high values bright/saturated. The gradient direction inverts compared to light backgrounds (where dark = high).
+- **Diverging scales:** both extremes are bright/saturated, midpoint is dark — the mirror of the light-background convention where the midpoint is light gray.
+- **Gridlines:** white or light gray at low opacity (~15–20%). Full-brightness white gridlines overwhelm the data.
+- **Text:** off-white (#F0F0F0 or similar) on very dark gray (#1A1A1A) reads more comfortably than pure white on pure black — pure contrast causes eye strain.
+- **Saturated colors amplify on dark backgrounds.** Colors that look fine in light mode can feel neon and aggressive on dark. Desaturate slightly, then test at realistic screen brightness levels (around 50–60% brightness, not 100%).
+- **Never auto-invert a light-mode palette for dark mode.** The colors and their lightness relationships were designed for a white background; inverting produces muddy, low-contrast results. Design dark-mode palettes intentionally.
+
 ### Accessibility
 
 - Always test palettes with a colorblind simulator (Viz Palette, Coblis, Color Oracle, or Datawrapper's built-in check).
@@ -356,7 +462,7 @@ Only two prominence levels for annotations/labels:
 
 Reserve the highest contrast for the thing the reader needs most. A source note should barely be noticed.
 
-### The four text elements and their jobs
+### The five text elements and their jobs
 
 Each element in a chart has a distinct job — don't duplicate:
 1. **Title** — states the main point or question ("Unemployment rose sharply in Q3", not "Unemployment rate, 2020–2024")
@@ -464,3 +570,14 @@ Before you finish, write your chart's message in one sentence. Then check:
 | Condensed font to save space | Reduce font size instead |
 | All caps for body text | Sentence case; all-caps only for short labels |
 | No source cited | Always include the data source |
+| Diverging bar chart on all-positive data | Use a standard bar chart |
+| Proportional symbol scaled by radius | Always scale by area (r² not r) |
+| Lollipop axis not at zero | Same rule as bars — start at zero (except dumbbells) |
+| Waterfall with no connecting lines | Add step lines between bars to show the flow |
+| Bump chart with 20+ entities | Filter to top 10–15; the rest become unreadable crossings |
+| Aspect ratio set by container, not data | Explicitly set width/height to serve the story |
+| 1–2 data points shown as a chart | State the number(s) in text instead |
+| Colored chart background | White or near-white only; colored backgrounds fight the data |
+| Gridlines AND tick marks both visible | Use one or the other — they're redundant together |
+| Chart border/frame left in | Remove it; it adds no information |
+| Light-mode palette inverted for dark mode | Design dark-mode palette separately; auto-invert produces muddy results |
