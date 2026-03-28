@@ -10,9 +10,7 @@ description: >-
   created, evaluated, or improved — regardless of library or tool. Apply it for:
   chart type questions ("which chart for X?"), fixing bad charts ("my pie chart
   has 12 slices", "looks unprofessional"), color or axis problems, and any
-  request to visualize data. Also triggers on German terms: Diagramm, Grafik,
-  Balkendiagramm, Liniendiagramm, Kreisdiagramm, Säulendiagramm, Heatmap,
-  visualisieren, darstellen. Use it even when the user doesn't mention design
+  request to visualize data. Use it even when the user doesn't mention design
   intent — the defaults here catch beginner mistakes before they happen.
 ---
 

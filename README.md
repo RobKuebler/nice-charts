@@ -21,7 +21,7 @@ Based on Datawrapper's editorial guidelines.
 Just describe what you want to visualize — the skill activates automatically:
 
 ```
-"Ich habe Umsatzdaten für 8 Produkte und will Marktanteile zeigen"
+"I have sales data for 8 products and want to show market share"
 "My line chart starts at 0 but all values are between 85k and 92k"
 "Which chart type is best for showing correlation?"
 "My pie chart has 12 slices and looks terrible"
