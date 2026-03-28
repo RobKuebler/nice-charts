@@ -1,0 +1,8 @@
+{
+  "name": "nice-charts",
+  "description": "Prevents common data visualization mistakes and guides toward the right chart for the right problem. Covers chart type selection, color scales, axes, typography, layout, and accessibility — based on Datawrapper's editorial guidelines.",
+  "author": {
+    "name": "RobKuebler",
+    "url": "https://github.com/RobKuebler"
+  }
+}
